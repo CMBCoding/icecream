@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- stylesheet -->
+     <link rel="stylesheet" href="styles/style.css">
+    <title>Ice Cream Order Form</title>
+</head>
+<body>
+
+    <main>
+        <form action="#" id="icecream" method="get">
+            <h1>Ice Cream Order Form</h1>
+            <img src="images/ice-cream-cone.svg" alt="triple flavor ice cream cone image">
+            <!-- contact information -->
+            <fieldset id="personal-info">
+                <legend>Personal Information</legend>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="John Doe">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="JohnDoe@email.com">
+            </fieldset>
+
+            <!-- Order details -->
+            <fieldset id="order-details">
+                <legend>Order Details</legend>
+                <!-- flavor selection -->
+                <label for="flavors">Choose your flavor:</label>
+                <select name="flavors" id="flavors">
+                    <option value="vanilla">Vanilla</option>
+                    <option value="chocolate">Chocolate</option>
+                    <option value="strawberry">Strawberry</option>
+                </select>
+
+                <!-- Cone selection -->
+                <p class="order-header">Choose your cone:</p>
+                <label for="waffle">
+                    <input type="radio" name="cone" id="waffle" value="waffle">Waffle cone
+                </label>
+                <label for="sugar">
+                    <input type="radio" name="cone" id="sugar" value="sugar">Sugar cone
+                </label>
+                <label for="cup">
+                    <input type="radio" name="cone" id="cup" value="cup">Cup
+                </label>
+
+                <!-- toppings -->
+                <p class="order-header">Toppings</p>
+                <label for="sprinkles">
+                    <input type="checkbox" id="sprinkles" value="sprinkles" name="toppings[]">Sprinkles
+                </label>
+                <label for="nuts">
+                    <input type="checkbox" id="nuts" value="nuts" name="toppings[]">Nuts
+                </label>
+                <label for="cherry">
+                    <input type="checkbox" id="cherry" value="cherry" name="toppings[]">Cherry
+                </label>
+                <label for="whipped">
+                    <input type="checkbox" id="whipped" value="whipped" name="toppings[]">Whipped Cream
+                </label>
+
+                <!-- comments -->
+                 <label for="comment" class="order-header">Comments</label>
+                 <textarea rows="5" id="comment" name="comment"></textarea>
+            </fieldset>
+            <!-- order button -->
+            <button type="submit" id="order-button">Submit order</button>
+        </form>
+    </main>
+</body>
+</html>

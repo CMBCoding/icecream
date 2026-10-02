@@ -1,0 +1,86 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif
+}
+
+body {
+    background-color: rgb(207, 246, 246);
+}
+
+main {
+    width: 85%;
+    margin: 4rem auto;
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.25rem 0;
+}
+ 
+h1 {
+    text-align: center;
+}
+
+img {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+}
+
+fieldset > label {
+    display: block;
+    width: 100%;
+}
+
+.order-header {
+    margin: 1.5rem auto 0.5rem auto;
+    text-align: left;
+}
+
+form {
+    margin: 2rem auto;
+}
+
+fieldset {
+    margin: 2rem auto;
+    background-color: white;
+    border-radius: 5px;
+    width: 80%;
+}
+
+input, label {
+    margin: 0.25rem;
+}
+
+input[type="text"], input[type="email"] {
+    width: 100%;
+}
+
+select {
+    width: 100%;
+    margin-bottom: 0.25rem 0.5rem;
+}
+
+legend {
+    text-align: center;
+    font-weight: bolder;
+    color: green;
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    resize: none;
+}
+
+button {
+    width: 80%;
+    height: 2rem;
+    margin: 0.5rem auto;
+    background-color: green;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    border: none;
+    font-size: 1rem;
+    display: block;
+}
