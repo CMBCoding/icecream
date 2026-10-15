@@ -30,6 +30,13 @@ fieldset > label {
     width: 100%;
 }
 
+.required {
+    display: none;
+    background-color: green;
+    font-weight: bold;
+    color: white;
+}
+
 .order-header {
     margin: 1.5rem auto 0.5rem auto;
     text-align: left;
