@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- Scripts -->
+    <script src="js/icecream.js" defer></script>
+    <title>Confirmation</title>
+</head>
+<body>
+    <main>
+        <h1>Thank you for your order, <%= order.name %></h1>
+        <h2>Personal information</h2>
+        <p>Name: <%= order.name%> </p>
+        <p>Email: <%= order.email%> </p>
+        <h2>Order Details</h2>
+        <p>Flavor: <%= order.flavor%> </p>
+        <p>Cone Type: <%= order.cone%></p>
+        <p>Toppings: <%= order.toppings%></p>
+    </main>
+</body>
+</html>

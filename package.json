@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/CMBCoding/icecream#readme",
   "dependencies": {
+    "eje": "^1.0.0",
+    "ejs": "^7.0.2",
     "express": "^5.2.1"
   }
 }

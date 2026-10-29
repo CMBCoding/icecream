@@ -15,6 +15,7 @@ document.getElementById("icecream").onsubmit = () => {
     let email = document.getElementById("email").value.trim();
     let flavors = document.getElementById("flavors").value;
     let cone = document.getElementsByName("cone");
+    let toppings = document.querySelectorAll('input[name="toppings[]"]:checked');
     let coneSelected = false; //Default for cone selection
 
     //Validation for the name
@@ -24,7 +25,7 @@ document.getElementById("icecream").onsubmit = () => {
     }
 
     //Validation for the email
-    if (name === "") {
+    if (email === "") {
         valid = false;
         document.getElementById("req-email").style.display = "block";
     }
@@ -44,6 +45,12 @@ document.getElementById("icecream").onsubmit = () => {
             valid = false;
             document.getElementById("req-cone").style.display = "block";
         }
+    }
+
+    if (toppings.length === 0) {
+        //Display the error
+        document.getElementById("err-toppings").style.display = "block";
+        isValid = false;
     }
 
 }
