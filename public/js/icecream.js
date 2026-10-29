@@ -38,14 +38,14 @@ document.getElementById("icecream").onsubmit = () => {
     }
 
     //Validation for the cone selection
-    for (i = 0; i < cone.length; i++) {
+    for (let i = 0; i < cone.length; i++) {
         if (cone[i].checked) {
             coneSelected = true;
         }
-        if (!coneSelected) {
-            valid = false;
-            document.getElementById("req-cone").style.display = "block";
-        }
+    }
+    if (!coneSelected) {
+        valid = false;
+        document.getElementById("req-cone").style.display = "block";
     }
 
     if (toppings.length === 0) {
