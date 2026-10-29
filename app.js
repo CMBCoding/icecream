@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/admin', (req, res) => {
-    res.render('admin', {orders});
+    res.render('admin', {orders});  
 })
 
 app.post('/confirm', (req, res) => {

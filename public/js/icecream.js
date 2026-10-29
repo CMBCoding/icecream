@@ -49,9 +49,11 @@ document.getElementById("icecream").onsubmit = () => {
 
     if (toppings.length === 0) {
         //Display the error
-        document.getElementById("err-toppings").style.display = "block";
-        isValid = false;
+        document.getElementById("req-toppings").style.display = "block";
+        valid = false;
     }
+
+    return valid;
 
 }
 
