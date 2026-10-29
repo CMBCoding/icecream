@@ -16,6 +16,7 @@ document.getElementById("icecream").onsubmit = () => {
     let flavors = document.getElementById("flavors").value;
     let cone = document.getElementsByName("cone");
     let toppings = document.querySelectorAll('input[name="toppings[]"]:checked');
+    let comments = document.getElementById('comment');
     let coneSelected = false; //Default for cone selection
 
     //Validation for the name
