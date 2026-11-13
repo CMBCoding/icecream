@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
     // res.sendFile(`${import.meta.dirname}/views/home.html`);
 });
 
-//Test the db
+// Test the db
 // app.get('/db-test', async(req,res)=> {
 //     try{
 //         const [orders] = await pool.query(`SELECT * FROM orders`);
@@ -47,19 +47,6 @@ app.get('/', (req, res) => {
 //         res.status(500).send('Database error: ' + err.message);
 //     }
 // });
-
-app.get('/admin', async(req, res) => {
-    try {
-        //Fetch all orders from database, most recent first
-        const [orders] = await pool.query(`SELECT * FROM orders ORDER BY timestamp DESC`);
-
-        res.render('admin', {orders});  
-    } catch (err) {
-        console.error('Database error:', err);
-        res.status(500).send('Error loading orders: ' + err.message);
-    }
-    
-})
 
 app.post('/confirm', async(req, res) => {
     try{
@@ -99,6 +86,19 @@ app.post('/confirm', async(req, res) => {
         console.log('Error saving order: ', err);
         res.status(500).send('Sorry, there was an error processing your order. Please try again. ');
     }  
+})
+
+app.get('/admin', async(req, res) => {
+    try {
+        //Fetch all orders from database, most recent first
+        const [orders] = await pool.query(`SELECT * FROM orders ORDER BY timestamp DESC`);
+
+        res.render('admin', {orders});  
+    } catch (err) {
+        console.error('Database error:', err);
+        res.status(500).send('Error loading orders: ' + err.message);
+    }
+    
 })
 
 //Start the server on the designated port
