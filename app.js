@@ -73,7 +73,8 @@ app.post('/confirm', async(req, res) => {
         order.toppings = Array.isArray(order.toppings) ? order.toppings.join(", ") : "";
 
         //SQL INSERT query with placeholders to prevent SQL injection
-        const sql = `INSERT INTO orders(customer, email, flavor, cone, toppings, comment) VALUES (?, ?, ?, ?, ?, ?);`;
+        const sql = `INSERT INTO orders(customer, email, flavor, cone, toppings, comment) 
+                                    VALUES (?, ?, ?, ?, ?, ?);`;
 
         const params = [
             order.name,
