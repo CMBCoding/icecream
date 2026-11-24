@@ -2,8 +2,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mysql2 from 'mysql2';
-dotenv.config();
+import session from 'express-session';
 
+dotenv.config();
 //Create a connection pool
 const pool = mysql2.createPool({
     host: process.env.DB_HOST,
@@ -15,6 +16,24 @@ const pool = mysql2.createPool({
 
 //Create an instance of an express application
 const app = express();
+
+//Session middleware: lets the server remember users between requests
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {maxAge: 1000 * 60 * 60}
+}));
+
+//Only let logged in users through; send everyone else to /login 
+function requireLogin(req, res, next) {
+    if (req.session.loggedIn) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
 
 //Define a port number for the server to listen to
 const PORT = 3002;
@@ -28,6 +47,19 @@ app.set('view engine', 'ejs');
 //Set up middleware
 app.use(express.urlencoded({extended: true}));
 
+app.get('/admin', requireLogin, async(req, res) => {
+    try {
+        //Fetch all orders from database, most recent first
+        const [orders] = await pool.query(`SELECT * FROM orders ORDER BY timestamp DESC`);
+
+        res.render('admin', {orders});  
+    } catch (err) {
+        console.error('Database error:', err);
+        res.status(500).send('Error loading orders: ' + err.message);
+    }
+    
+})
+
 //Create an array to hold the order information
 const orders = [];
 
@@ -36,6 +68,31 @@ app.get('/', (req, res) => {
     res.render('home');
     // res.sendFile(`${import.meta.dirname}/views/home.html`);
 });
+
+//Define a login 
+app.get('/login', (req, res) => {
+    res.render('login', {error: null});
+});
+
+app.post('/login', (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    if(username === process.env.ADMIN_USER && 
+        password === process.env.ADMIN_PASSWORD) {
+            req.session.loggedIn = true;
+            res.redirect('/admin');
+        } else {
+            res.render('login', 
+                {error: 'Invalid username or password'});
+        }
+})
+
+app.get('/logout',(req,res) => {
+    req.session.destroy(() =>{
+        res.redirect('login');
+    });
+})
 
 // Test the db
 // app.get('/db-test', async(req,res)=> {
@@ -86,19 +143,6 @@ app.post('/confirm', async(req, res) => {
         console.log('Error saving order: ', err);
         res.status(500).send('Sorry, there was an error processing your order. Please try again. ');
     }  
-})
-
-app.get('/admin', async(req, res) => {
-    try {
-        //Fetch all orders from database, most recent first
-        const [orders] = await pool.query(`SELECT * FROM orders ORDER BY timestamp DESC`);
-
-        res.render('admin', {orders});  
-    } catch (err) {
-        console.error('Database error:', err);
-        res.status(500).send('Error loading orders: ' + err.message);
-    }
-    
 })
 
 //Start the server on the designated port

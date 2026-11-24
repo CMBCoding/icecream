@@ -30,12 +30,18 @@ fieldset > label {
     width: 100%;
 }
 
-.required {
-    display: none;
+.required, .login-error {
     background-color: green;
     font-weight: bold;
     color: white;
 }
+
+.login-error {
+    background-color: rgb(128, 0, 0);
+    font-weight: bold;
+    color: white;
+}
+
 
 .order-header {
     margin: 1.5rem auto 0.5rem auto;
@@ -57,8 +63,8 @@ input, label {
     margin: 0.25rem;
 }
 
-input[type="text"], input[type="email"] {
-    width: 100%;
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 98%;
 }
 
 select {
